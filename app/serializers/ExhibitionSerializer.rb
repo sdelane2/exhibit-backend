@@ -1,10 +1,10 @@
 class ExhibitionSerializer < ActiveModel::Serializer
-    attributes :id, :title, :image
+    attributes :id, :title, :gallery_id, :image, :exhibited_artworks, :gallery
+    belongs_to :gallery
+    has_many :exhibited_artworks
 
-    def image
-        self.object.artworks.first.image_url
-    end
-
+    
+    
     
 end
 

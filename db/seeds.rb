@@ -12,10 +12,9 @@ require 'faker'
 require 'pry'
 
 
-Artwork.destroy_all
 Exhibition.destroy_all
-Gallery.destroy_all
 ExhibitedArtwork.destroy_all
+GalleryArtwork.destroy_all
 
 
 def get_artworks
@@ -28,13 +27,15 @@ def get_artworks
 
         artwork_hash["records"].each do |artwork|
             if artwork["images"] != [] && artwork["people"] != nil && artwork["imagecount"] > 0 && artwork["images"] != []
-                work = Artwork.new 
+                work = GalleryArtwork.new 
 
+                work["gallery_id"] = Gallery.all.sample.id
                 work["medium"] = artwork["technique"]
                 work["artist"] = artwork["people"][0]["name"]
                 work["description"] = artwork["description"]
                 work["title"] = artwork["title"]
                 work["date"] = artwork["dated"]
+                work["object_id"] = artwork["objectid"]
                 work["image_url"] = "https://ids.lib.harvard.edu/ids/view/#{artwork["images"][0]["idsid"]}"
             
                 work.save!
@@ -45,9 +46,34 @@ end
 
 get_artworks
 
-Gallery.create(name: "Luhring Augustine")
+
+
+
+
+
+
+# artworks = Artwork.all 
+
+# def create_gallery_artworks(artworks)
+#     artworks.each do |artwork|
+#         GalleryArtwork.create(artwork_id: artwork.id, gallery_id: Gallery.all.sample.id)
+#     end
+# end
+
+# create_gallery_artworks(artworks)
+
+GalleryArtwork.unique
+
 Exhibition.create(gallery_id: Gallery.first.id, title: "Test", description: "the first show", published: true)
-GalleryArtwork.create(gallery_id: Gallery.first.id, artwork_id: Artwork.first.id)
-ExhibitedArtwork.create(exhibition_id: Exhibition.first.id, artwork_id: Artwork.first.id)
-ExhibitedArtwork.create(exhibition_id: Exhibition.first.id, artwork_id: Artwork.last.id)   
+Exhibition.create(gallery_id: Gallery.first.id, title: "Cool Art", description: "the first show", published: true)
+Exhibition.create(gallery_id: Gallery.last.id, title: "Art Sucks", description: "the first show", published: true)
+
+ExhibitedArtwork.create(exhibition_id: Exhibition.first.id, gallery_artwork_id: GalleryArtwork.third.id, cover_image: true)
+ExhibitedArtwork.create(exhibition_id: Exhibition.second.id, gallery_artwork_id: GalleryArtwork.third.id, cover_image: true)
+ExhibitedArtwork.create(exhibition_id: Exhibition.third.id, gallery_artwork_id: GalleryArtwork.second.id, cover_image: true)
+ExhibitedArtwork.create(exhibition_id: Exhibition.third.id, gallery_artwork_id: GalleryArtwork.first.id, cover_image: false)
+ExhibitedArtwork.create(exhibition_id: Exhibition.third.id, gallery_artwork_id: GalleryArtwork.third.id, cover_image: false)
+
+
+
 

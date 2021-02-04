@@ -1,5 +1,7 @@
 class GalleryArtworksController < ApplicationController
   before_action :set_gallery_artwork, only: [:show, :update, :destroy]
+  skip_before_action :authorized, only: [ :index]
+
 
   # GET /gallery_artworks
   def index

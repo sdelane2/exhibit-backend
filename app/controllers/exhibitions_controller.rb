@@ -1,5 +1,8 @@
 class ExhibitionsController < ApplicationController
   before_action :set_exhibition, only: [:show, :update, :destroy]
+  skip_before_action :authorized, only: [ :index]
+
+
 
   # GET /exhibitions
   def index

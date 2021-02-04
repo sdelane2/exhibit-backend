@@ -1,6 +1,10 @@
 class GalleriesController < ApplicationController
   before_action :set_gallery, only: [:show, :update, :destroy]
+  skip_before_action :authorized, only: [:create, :index]
 
+  def profile
+    render json: { gallery: GallerySerializer.new(current_gallery) }, status: :accepted
+  end
   # GET /galleries
   def index
     @galleries = Gallery.all
@@ -15,12 +19,13 @@ class GalleriesController < ApplicationController
 
   # POST /galleries
   def create
-    @gallery = Gallery.new(gallery_params)
+    @gallery = Gallery.create(gallery_params)
 
-    if @gallery.save
-      render json: @gallery, status: :created, location: @gallery
+    if @gallery.valid?
+      @token = encode_token(gallery_id: @gallery.id)
+      render json: { gallery: GallerySerializer.new(@gallery), jwt: @token }, status: :created
     else
-      render json: @gallery.errors, status: :unprocessable_entity
+      render json: { error: 'failed to create gallery' }, status: :not_acceptable
     end
   end
 
@@ -46,6 +51,6 @@ class GalleriesController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def gallery_params
-      params.require(:gallery).permit(:name)
+      params.require(:gallery).permit(:name, :username, :password)
     end
 end

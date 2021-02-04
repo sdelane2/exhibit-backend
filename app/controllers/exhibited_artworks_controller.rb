@@ -1,5 +1,7 @@
 class ExhibitedArtworksController < ApplicationController
   before_action :set_exhibited_artwork, only: [:show, :update, :destroy]
+  skip_before_action :authorized, only: [ :index]
+
 
   # GET /exhibited_artworks
   def index

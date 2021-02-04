@@ -10,27 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_14_144519) do
+ActiveRecord::Schema.define(version: 2021_02_03_203518) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "artworks", force: :cascade do |t|
-    t.string "artist"
-    t.string "title"
-    t.string "date"
-    t.string "medium"
-    t.string "description"
-    t.string "image_url"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
   create_table "exhibited_artworks", force: :cascade do |t|
-    t.integer "artwork_id"
     t.integer "exhibition_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "gallery_artwork_id"
+    t.boolean "cover_image"
   end
 
   create_table "exhibitions", force: :cascade do |t|
@@ -42,30 +32,25 @@ ActiveRecord::Schema.define(version: 2021_01_14_144519) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "favorite_artworks", force: :cascade do |t|
-    t.integer "artwork_id"
-    t.integer "user_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
   create_table "galleries", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "username"
+    t.string "password_digest"
   end
 
   create_table "gallery_artworks", force: :cascade do |t|
     t.integer "gallery_id"
-    t.integer "artwork_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "users", force: :cascade do |t|
-    t.string "name"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.string "title"
+    t.string "date"
+    t.string "medium"
+    t.string "description"
+    t.string "image_url"
+    t.string "artist"
+    t.integer "object_id"
   end
 
 end
