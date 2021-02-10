@@ -68,11 +68,10 @@ Exhibition.create(gallery_id: Gallery.first.id, title: "Test", description: "the
 Exhibition.create(gallery_id: Gallery.first.id, title: "Cool Art", description: "the first show", published: true)
 Exhibition.create(gallery_id: Gallery.last.id, title: "Art Sucks", description: "the first show", published: true)
 
-ExhibitedArtwork.create(exhibition_id: Exhibition.first.id, gallery_artwork_id: GalleryArtwork.third.id, cover_image: true)
+ExhibitedArtwork.create(exhibition_id: Exhibition.first.id, gallery_artwork_id: GalleryArtwork.first.id, cover_image: true)
 ExhibitedArtwork.create(exhibition_id: Exhibition.second.id, gallery_artwork_id: GalleryArtwork.third.id, cover_image: true)
 ExhibitedArtwork.create(exhibition_id: Exhibition.third.id, gallery_artwork_id: GalleryArtwork.second.id, cover_image: true)
-ExhibitedArtwork.create(exhibition_id: Exhibition.third.id, gallery_artwork_id: GalleryArtwork.first.id, cover_image: false)
-ExhibitedArtwork.create(exhibition_id: Exhibition.third.id, gallery_artwork_id: GalleryArtwork.third.id, cover_image: false)
+
 
 
 

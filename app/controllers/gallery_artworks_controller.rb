@@ -3,6 +3,7 @@ class GalleryArtworksController < ApplicationController
   skip_before_action :authorized, only: [ :index]
 
 
+
   # GET /gallery_artworks
   def index
     @gallery_artworks = GalleryArtwork.all
@@ -48,6 +49,6 @@ class GalleryArtworksController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def gallery_artwork_params
-      params.require(:gallery_artwork).permit(:gallery_id, :artwork_id)
+      params.require(:gallery_artwork).permit(:gallery_id, :artist, :title, :date, :medium, :description, :image_url)
     end
 end

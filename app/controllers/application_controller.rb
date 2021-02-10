@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::API
-    before_action :authorized
+  before_action :authorized
 
     def encode_token(payload)
       # payload => { beef: 'steak' }
@@ -10,6 +10,7 @@ class ApplicationController < ActionController::API
     def auth_header
       # { 'Authorization': 'Bearer <token>' }
       request.headers['Authorization']
+      # binding.pry
     end
   
     def decoded_token
@@ -18,6 +19,7 @@ class ApplicationController < ActionController::API
         # headers: { 'Authorization': 'Bearer <token>' }
         begin
           JWT.decode(token, 'my_s3cr3t', true, algorithm: 'HS256')
+          # binding.pry
           # JWT.decode => [{ "beef"=>"steak" }, { "alg"=>"HS256" }]
         rescue JWT::DecodeError
           nil
@@ -27,11 +29,16 @@ class ApplicationController < ActionController::API
     end
 
     def current_gallery
-        if decoded_token
+        if decoded_token[0].key?("gallery_id")
+          # binding.pry
           # decoded_token=> [{"user_id"=>2}, {"alg"=>"HS256"}]
           # or nil if we can't decode the token
           gallery_id = decoded_token[0]['gallery_id']
           @gallery = Gallery.find_by(id: gallery_id)
+        elsif decoded_token[0].key?("user_id")
+          # binding.pry
+          user_id = decoded_token[0]['user_id']
+          @user = User.find_by(id: user_id)
         end
     end
     

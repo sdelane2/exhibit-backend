@@ -5,6 +5,7 @@ class GalleriesController < ApplicationController
   def profile
     render json: { gallery: GallerySerializer.new(current_gallery) }, status: :accepted
   end
+  
   # GET /galleries
   def index
     @galleries = Gallery.all
@@ -22,7 +23,7 @@ class GalleriesController < ApplicationController
     @gallery = Gallery.create(gallery_params)
 
     if @gallery.valid?
-      @token = encode_token(gallery_id: @gallery.id)
+      @token = encode_token(gallery_id: @gallery.id, role: "gallery")
       render json: { gallery: GallerySerializer.new(@gallery), jwt: @token }, status: :created
     else
       render json: { error: 'failed to create gallery' }, status: :not_acceptable

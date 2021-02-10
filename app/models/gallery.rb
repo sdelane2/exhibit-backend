@@ -1,4 +1,6 @@
 class Gallery < ApplicationRecord
+    # DeviseTokenAuth::Concerns::Gallery
+
     has_many :gallery_artworks
     has_many :exhibitions
     has_many :exhibited_artworks, through: :exhibitions

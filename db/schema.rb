@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_03_203518) do
+ActiveRecord::Schema.define(version: 2021_02_09_214412) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -32,12 +32,37 @@ ActiveRecord::Schema.define(version: 2021_02_03_203518) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "favorite_artworks", force: :cascade do |t|
+    t.integer "exhibited_artwork_id"
+    t.integer "user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "favorite_exhibitions", force: :cascade do |t|
+    t.integer "exhibition_id"
+    t.integer "user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "galleries", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "username"
     t.string "password_digest"
+    t.string "uid", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.json "tokens"
+  end
+
+  create_table "galleries_roles", id: false, force: :cascade do |t|
+    t.bigint "gallery_id"
+    t.bigint "role_id"
+    t.index ["gallery_id", "role_id"], name: "index_galleries_roles_on_gallery_id_and_role_id"
+    t.index ["gallery_id"], name: "index_galleries_roles_on_gallery_id"
+    t.index ["role_id"], name: "index_galleries_roles_on_role_id"
   end
 
   create_table "gallery_artworks", force: :cascade do |t|
@@ -51,6 +76,25 @@ ActiveRecord::Schema.define(version: 2021_02_03_203518) do
     t.string "image_url"
     t.string "artist"
     t.integer "object_id"
+  end
+
+  create_table "roles", force: :cascade do |t|
+    t.string "name"
+    t.string "resource_type"
+    t.bigint "resource_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["name", "resource_type", "resource_id"], name: "index_roles_on_name_and_resource_type_and_resource_id"
+    t.index ["resource_type", "resource_id"], name: "index_roles_on_resource_type_and_resource_id"
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "username"
+    t.string "password_digest"
+    t.string "name"
+    t.datetime "remember_created_at"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
 end

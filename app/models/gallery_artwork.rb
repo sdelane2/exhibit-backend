@@ -5,9 +5,14 @@ class GalleryArtwork < ApplicationRecord
     def self.unique
         grouped = all.group_by{|model| model.object_id}
         grouped.values.each do |duplicate|
-            first_one = duplicate.shift
-            duplicate.each{|double| double.destroy}
+            if duplicate === nil 
+            else 
+                first_one = duplicate.shift
+                duplicate.each{|double| double.destroy}
+            end
         end
     
     end
+
+
 end

@@ -1,13 +1,12 @@
-class AuthController < ApplicationController
+class GalleryAuthController < ApplicationController
     skip_before_action :authorized, only: [:create]
-
 
   def create
     @gallery = Gallery.find_by(username: gallery_login_params[:username])
     #User#authenticate comes from BCrypt
     if @gallery && @gallery.authenticate(gallery_login_params[:password])
       # encode token comes from ApplicationController
-      token = encode_token({ gallery_id: @gallery.id })
+      token = encode_token({ gallery_id: @gallery.id, role: "gallery"})
       render json: { gallery: GallerySerializer.new(@gallery), jwt: token }, status: :accepted
     else
       render json: { message: 'Invalid username or password' }, status: :unauthorized
