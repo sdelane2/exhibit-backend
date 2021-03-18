@@ -15,12 +15,14 @@ require 'pry'
 Exhibition.destroy_all
 ExhibitedArtwork.destroy_all
 GalleryArtwork.destroy_all
+FavoriteArtwork.destroy_all
+FavoriteExhibition.destroy_all
 
 
 def get_artworks
     index_number = 0 
     artwork_array = []
-    10.times do 
+    50.times do 
         all_artworks = RestClient.get("https://api.harvardartmuseums.org/object?apikey=#{$api_key}&q=divison%3AModern%20and%20Contemporary%20Art&imagecount=1&page=#{index_number}")
         index_number += 1
         artwork_hash = JSON.parse(all_artworks)
@@ -64,12 +66,11 @@ get_artworks
 
 GalleryArtwork.unique
 
-Exhibition.create(gallery_id: Gallery.first.id, title: "Test", description: "the first show", published: true)
-Exhibition.create(gallery_id: Gallery.first.id, title: "Cool Art", description: "the first show", published: true)
-Exhibition.create(gallery_id: Gallery.last.id, title: "Art Sucks", description: "the first show", published: true)
+Exhibition.create(gallery_id: Gallery.first.id, title: "Prints and Editions", description: "For these artists, printmaking has provided fruitful grounds for experimentation in their varied practices. Their works collectively demonstrate the medium’s versatility through its many forms, ranging from intaglio to photogravure to silkscreen and monotype. While many feature printmaking prominently within their creative process, others engage with it more peripherally as a means of expanding their practice.", published: true)
+Exhibition.create(gallery_id: Gallery.first.id, title: "Virtual Views", description: "Join us for virtual explorations with curators and much more. We’re bringing our galleries to you! ", published: true)
+Exhibition.create(gallery_id: Gallery.last.id, title: "New Visions", description: "Collectively, the exhibition affirms the discipline’s capacity to foster new understandings of identity, put forth nuanced critiques of the world around us, and find power in play and vulnerability.", published: true)
 
-ExhibitedArtwork.create(exhibition_id: Exhibition.first.id, gallery_artwork_id: GalleryArtwork.first.id, cover_image: true)
-ExhibitedArtwork.create(exhibition_id: Exhibition.second.id, gallery_artwork_id: GalleryArtwork.third.id, cover_image: true)
+
 ExhibitedArtwork.create(exhibition_id: Exhibition.third.id, gallery_artwork_id: GalleryArtwork.second.id, cover_image: true)
 
 

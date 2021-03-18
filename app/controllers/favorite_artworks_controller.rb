@@ -1,5 +1,6 @@
 class FavoriteArtworksController < ApplicationController
   before_action :set_favorite_artwork, only: [:show, :update, :destroy]
+  skip_before_action :authorized
 
   # GET /favorite_artworks
   def index

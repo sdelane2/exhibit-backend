@@ -10,6 +10,6 @@ Rails.application.routes.draw do
   post '/gallery/login', to: 'gallery_auth#create'
   post '/user/login', to: 'user_auth#create'
   get '/explore', to: 'users#explore'
-  get '/profile', to: 'galleries#profile'
+  get '/gallery/profile', to: 'galleries#profile'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
