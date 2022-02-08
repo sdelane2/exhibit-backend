@@ -10,6 +10,7 @@ require 'rest-client'
 require 'json'
 require 'faker'
 require 'pry'
+require 's3'
 
 
 
