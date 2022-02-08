@@ -10,10 +10,7 @@ require 'rest-client'
 require 'json'
 require 'faker'
 require 'pry'
-
-
-:secret_access_key => ENV['api_key']
-
+require 'config.ru'
 
 
 Exhibition.destroy_all
