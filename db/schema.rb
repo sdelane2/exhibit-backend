@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_09_214412) do
+ActiveRecord::Schema.define(version: 2022_02_08_221339) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,6 +30,7 @@ ActiveRecord::Schema.define(version: 2021_02_09_214412) do
     t.boolean "published"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "user_id"
   end
 
   create_table "favorite_artworks", force: :cascade do |t|
@@ -44,17 +45,6 @@ ActiveRecord::Schema.define(version: 2021_02_09_214412) do
     t.integer "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "galleries", force: :cascade do |t|
-    t.string "name"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.string "username"
-    t.string "password_digest"
-    t.string "uid", default: "", null: false
-    t.string "encrypted_password", default: "", null: false
-    t.json "tokens"
   end
 
   create_table "galleries_roles", id: false, force: :cascade do |t|
@@ -76,6 +66,7 @@ ActiveRecord::Schema.define(version: 2021_02_09_214412) do
     t.string "image_url"
     t.string "artist"
     t.integer "object_id"
+    t.integer "user_id"
   end
 
   create_table "roles", force: :cascade do |t|
