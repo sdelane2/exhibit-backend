@@ -1,6 +1,6 @@
 class DropArtworks < ActiveRecord::Migration[6.0]
   def change
-    drop_table :artworks
+    table_exists?(:artworks) ? drop_table(:artworks) : nil
     add_column :gallery_artworks, :title, :string
     add_column :gallery_artworks, :date, :string
     add_column :gallery_artworks, :medium, :string
