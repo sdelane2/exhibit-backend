@@ -1,5 +1,5 @@
 class GalleryArtwork < ApplicationRecord
-    belongs_to :gallery
+    belongs_to :user
     has_many :exhibited_artworks
 
     def self.unique

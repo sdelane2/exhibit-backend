@@ -1,7 +1,7 @@
 class Exhibition < ApplicationRecord
     has_many :exhibited_artworks
     has_many :gallery_artworks, through: :exhibited_artworks
-    belongs_to :gallery
+    belongs_to :user
     has_many :favorite_exhibitions
     
     

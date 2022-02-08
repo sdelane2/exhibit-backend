@@ -32,7 +32,7 @@ def get_artworks
             if artwork["images"] != [] && artwork["people"] != nil && artwork["imagecount"] > 0 && artwork["images"] != []
                 work = GalleryArtwork.new 
 
-                work["gallery_id"] = Gallery.all.sample.id
+                work["user_id"] = User.all.sample.id
                 work["medium"] = artwork["technique"]
                 work["artist"] = artwork["people"][0]["name"]
                 work["description"] = artwork["description"]
@@ -47,7 +47,7 @@ def get_artworks
     end
 end
 
-Gallery.create(name: "Gagosian Gallery", password_digest: 'password', username: 'Gagosian' )
+User.create(name: "Sean", password_digest: 'password', username: 'Sean' )
 
 
 get_artworks
@@ -70,9 +70,9 @@ get_artworks
 
 GalleryArtwork.unique
 
-Exhibition.create(gallery_id: Gallery.first.id, title: "Prints and Editions", description: "For these artists, printmaking has provided fruitful grounds for experimentation in their varied practices. Their works collectively demonstrate the medium’s versatility through its many forms, ranging from intaglio to photogravure to silkscreen and monotype. While many feature printmaking prominently within their creative process, others engage with it more peripherally as a means of expanding their practice.", published: true)
-Exhibition.create(gallery_id: Gallery.first.id, title: "Virtual Views", description: "Join us for virtual explorations with curators and much more. We’re bringing our galleries to you! ", published: true)
-Exhibition.create(gallery_id: Gallery.last.id, title: "New Visions", description: "Collectively, the exhibition affirms the discipline’s capacity to foster new understandings of identity, put forth nuanced critiques of the world around us, and find power in play and vulnerability.", published: true)
+Exhibition.create(user_id: User.first.id, title: "Prints and Editions", description: "For these artists, printmaking has provided fruitful grounds for experimentation in their varied practices. Their works collectively demonstrate the medium’s versatility through its many forms, ranging from intaglio to photogravure to silkscreen and monotype. While many feature printmaking prominently within their creative process, others engage with it more peripherally as a means of expanding their practice.", published: true)
+Exhibition.create(user_id: User.first.id, title: "Virtual Views", description: "Join us for virtual explorations with curators and much more. We’re bringing our galleries to you! ", published: true)
+Exhibition.create(user_id: User.last.id, title: "New Visions", description: "Collectively, the exhibition affirms the discipline’s capacity to foster new understandings of identity, put forth nuanced critiques of the world around us, and find power in play and vulnerability.", published: true)
 
 
 ExhibitedArtwork.create(exhibition_id: Exhibition.third.id, gallery_artwork_id: GalleryArtwork.second.id, cover_image: true)
