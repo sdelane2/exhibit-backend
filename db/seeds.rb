@@ -47,7 +47,7 @@ def get_artworks
     end
 end
 
-Gallery.create(name: "Gagosian Gallery", digest: 'password', username: 'Gagosian' )
+Gallery.create(name: "Gagosian Gallery", password_digest: 'password', username: 'Gagosian' )
 
 
 get_artworks
