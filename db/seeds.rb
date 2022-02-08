@@ -11,6 +11,10 @@ require 'json'
 require 'faker'
 require 'pry'
 
+AWS::S3::Base.establish_connection!(
+ :secret_access_key => ENV['api_key']
+)
+
 
 Exhibition.destroy_all
 ExhibitedArtwork.destroy_all
@@ -23,7 +27,7 @@ def get_artworks
     index_number = 0 
     artwork_array = []
     50.times do 
-        all_artworks = RestClient.get("https://api.harvardartmuseums.org/object?apikey=#{api_key}&q=divison%3AModern%20and%20Contemporary%20Art&imagecount=1&page=#{index_number}")
+        all_artworks = RestClient.get("https://api.harvardartmuseums.org/object?apikey=#{secret_access_key}&q=divison%3AModern%20and%20Contemporary%20Art&imagecount=1&page=#{index_number}")
         index_number += 1
         artwork_hash = JSON.parse(all_artworks)
 
