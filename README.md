@@ -1,24 +1,8 @@
-# README
+## Exhibit
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Exhibit is an online viewing room platform for art galleries and museums to create virtual exhibitions. All artwork data is seeded from [Harvard Art Museum's API](https://github.com/harvardartmuseums/api-docs).
 
-Things you may want to cover:
+The frontend of this project can be found here: https://github.com/sdelane2/exhibit-frontend.
 
-* Ruby version
 
-* System dependencies
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
