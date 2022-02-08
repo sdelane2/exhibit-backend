@@ -5,7 +5,7 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-require_relative '../.api_key.rb'
+# require_relative '../.api_key.rb'
 require 'rest-client'
 require 'json'
 require 'faker'
