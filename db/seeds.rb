@@ -11,9 +11,9 @@ require 'json'
 require 'faker'
 require 'pry'
 
-AWS::S3::Base.establish_connection!(
- :secret_access_key => ENV['api_key']
-)
+
+:secret_access_key => ENV['api_key']
+
 
 
 Exhibition.destroy_all
