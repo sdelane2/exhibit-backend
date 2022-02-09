@@ -3,7 +3,7 @@ class UsersController < ApplicationController
     skip_before_action :authorized, only: [:create, :index]
   
     def explore
-        render json: { gallery: UserSerializer.new(current_gallery) }, status: :accepted
+        render json: { gallery: UserSerializer.new(current_user) }, status: :accepted
     end
 
     # GET /users
