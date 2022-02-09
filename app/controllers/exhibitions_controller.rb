@@ -50,6 +50,6 @@ class ExhibitionsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def exhibition_params
-      params.require(:exhibition).permit(:gallery_id, :title, :description, :published)
+      params.require(:exhibition).permit(:user_id, :title, :description, :published)
     end
 end
