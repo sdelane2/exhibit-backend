@@ -48,6 +48,10 @@ def get_artworks
 end
 
 User.create(name: "Sean", password_digest: 'password', username: 'Sean' )
+User.create(name: "Tina", password_digest: 'password', username: 'Tina' )
+User.create(name: "Basil", password_digest: 'password', username: 'Basil' )
+User.create(name: "Moose", password_digest: 'password', username: 'Moose' )
+User.create(name: "Dave", password_digest: 'password', username: 'Picasso' )
 
 
 get_artworks
@@ -75,7 +79,10 @@ Exhibition.create(user_id: User.first.id, title: "Virtual Views", description: "
 Exhibition.create(user_id: User.last.id, title: "New Visions", description: "Collectively, the exhibition affirms the discipline’s capacity to foster new understandings of identity, put forth nuanced critiques of the world around us, and find power in play and vulnerability.", published: true)
 
 
-ExhibitedArtwork.create(exhibition_id: Exhibition.third.id, gallery_artwork_id: GalleryArtwork.second.id, cover_image: true)
+ExhibitedArtwork.create(exhibition_id: Exhibition.third.id, gallery_artwork_id: GalleryArtwork.first.id, cover_image: true)
+ExhibitedArtwork.create(exhibition_id: Exhibition.first.id, gallery_artwork_id: GalleryArtwork.second.id, cover_image: true)
+ExhibitedArtwork.create(exhibition_id: Exhibition.second.id, gallery_artwork_id: GalleryArtwork.third.id, cover_image: true)
+
 
 
 
