@@ -74,8 +74,8 @@ get_artworks
 
 GalleryArtwork.unique
 
-Exhibition.create(user_id: User.first.id, title: "Prints and Editions", description: "For these artists, printmaking has provided fruitful grounds for experimentation in their varied practices. Their works collectively demonstrate the medium’s versatility through its many forms, ranging from intaglio to photogravure to silkscreen and monotype. While many feature printmaking prominently within their creative process, others engage with it more peripherally as a means of expanding their practice.", published: true)
-Exhibition.create(user_id: User.first.id, title: "Virtual Views", description: "Join us for virtual explorations with curators and much more. We’re bringing our galleries to you! ", published: true)
+Exhibition.create(user_id: User.second.id, title: "Prints and Editions", description: "For these artists, printmaking has provided fruitful grounds for experimentation in their varied practices. Their works collectively demonstrate the medium’s versatility through its many forms, ranging from intaglio to photogravure to silkscreen and monotype. While many feature printmaking prominently within their creative process, others engage with it more peripherally as a means of expanding their practice.", published: true)
+Exhibition.create(user_id: User.third.id, title: "Virtual Views", description: "Join us for virtual explorations with curators and much more. We’re bringing our galleries to you! ", published: true)
 Exhibition.create(user_id: User.last.id, title: "New Visions", description: "Collectively, the exhibition affirms the discipline’s capacity to foster new understandings of identity, put forth nuanced critiques of the world around us, and find power in play and vulnerability.", published: true)
 
 
