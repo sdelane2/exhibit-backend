@@ -1,6 +1,6 @@
 class ExhibitedArtworkSerializer < ActiveModel::Serializer
-    attributes :gallery_artwork, :cover_image, :gallery_artwork_id, :exhibition_id, :id
-    belongs_to :gallery_artwork
+    attributes :artwork, :artwork_id, :exhibition_id, :id
+    belongs_to :artwork
     belongs_to :exhibition
 
     
