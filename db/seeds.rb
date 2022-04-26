@@ -7,7 +7,7 @@ require 'pry'
 
 Exhibition.destroy_all
 ExhibitedArtwork.destroy_all
-GalleryArtwork.destroy_all
+Artwork.destroy_all
 FavoriteArtwork.destroy_all
 FavoriteExhibition.destroy_all
 
@@ -22,14 +22,13 @@ def get_artworks
 
         artwork_hash["records"].each do |artwork|
             if artwork["images"] != [] && artwork["people"] != nil && artwork["imagecount"] > 0 && artwork["images"] != []
-                work = GalleryArtwork.new 
+                work = Artwork.new 
 
-                work["user_id"] = User.all.sample.id
                 work["medium"] = artwork["technique"]
                 work["artist"] = artwork["people"][0]["name"]
                 work["description"] = artwork["description"]
                 work["title"] = artwork["title"]
-                work["date"] = artwork["dated"]
+                work["year"] = artwork["dated"]
                 work["object_id"] = artwork["objectid"]
                 work["image_url"] = "https://ids.lib.harvard.edu/ids/view/#{artwork["images"][0]["idsid"]}"
             
@@ -71,9 +70,9 @@ Exhibition.create(user_id: User.third.id, title: "Virtual Views", description: "
 Exhibition.create(user_id: User.last.id, title: "New Visions", description: "Collectively, the exhibition affirms the discipline’s capacity to foster new understandings of identity, put forth nuanced critiques of the world around us, and find power in play and vulnerability.", published: true)
 
 
-ExhibitedArtwork.create(exhibition_id: Exhibition.third.id, gallery_artwork_id: GalleryArtwork.first.id, cover_image: true)
-ExhibitedArtwork.create(exhibition_id: Exhibition.first.id, gallery_artwork_id: GalleryArtwork.second.id, cover_image: true)
-ExhibitedArtwork.create(exhibition_id: Exhibition.second.id, gallery_artwork_id: GalleryArtwork.third.id, cover_image: true)
+ExhibitedArtwork.create(exhibition_id: Exhibition.third.id, gallery_artwork_id: Artwork.first.id, cover_image: true)
+ExhibitedArtwork.create(exhibition_id: Exhibition.first.id, gallery_artwork_id: Artwork.second.id, cover_image: true)
+ExhibitedArtwork.create(exhibition_id: Exhibition.second.id, gallery_artwork_id: Artwork.third.id, cover_image: true)
 
 
 

@@ -48,6 +48,6 @@ class ExhibitedArtworksController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def exhibited_artwork_params
-      params.require(:exhibited_artwork).permit(:gallery_artwork_id, :exhibition_id, :cover_image)
+      params.require(:exhibited_artwork).permit(:artwork_id, :exhibition_id)
     end
 end

@@ -10,21 +10,31 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_02_08_221339) do
+ActiveRecord::Schema.define(version: 2022_04_26_202603) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "artworks", force: :cascade do |t|
+    t.string "medium"
+    t.string "artist"
+    t.string "title"
+    t.string "year"
+    t.string "image_url"
+    t.text "description"
+    t.integer "object_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "exhibited_artworks", force: :cascade do |t|
     t.integer "exhibition_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "gallery_artwork_id"
-    t.boolean "cover_image"
+    t.integer "artwork_id"
   end
 
   create_table "exhibitions", force: :cascade do |t|
-    t.integer "gallery_id"
     t.string "title"
     t.string "description"
     t.boolean "published"
@@ -45,38 +55,6 @@ ActiveRecord::Schema.define(version: 2022_02_08_221339) do
     t.integer "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "galleries_roles", id: false, force: :cascade do |t|
-    t.bigint "gallery_id"
-    t.bigint "role_id"
-    t.index ["gallery_id", "role_id"], name: "index_galleries_roles_on_gallery_id_and_role_id"
-    t.index ["gallery_id"], name: "index_galleries_roles_on_gallery_id"
-    t.index ["role_id"], name: "index_galleries_roles_on_role_id"
-  end
-
-  create_table "gallery_artworks", force: :cascade do |t|
-    t.integer "gallery_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.string "title"
-    t.string "date"
-    t.string "medium"
-    t.string "description"
-    t.string "image_url"
-    t.string "artist"
-    t.integer "object_id"
-    t.integer "user_id"
-  end
-
-  create_table "roles", force: :cascade do |t|
-    t.string "name"
-    t.string "resource_type"
-    t.bigint "resource_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["name", "resource_type", "resource_id"], name: "index_roles_on_name_and_resource_type_and_resource_id"
-    t.index ["resource_type", "resource_id"], name: "index_roles_on_resource_type_and_resource_id"
   end
 
   create_table "users", force: :cascade do |t|

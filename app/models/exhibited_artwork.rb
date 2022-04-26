@@ -1,6 +1,6 @@
 class ExhibitedArtwork < ApplicationRecord
     belongs_to :exhibition
-    belongs_to :gallery_artwork
+    belongs_to :artwork
     has_many :favorite_artworks
 
     

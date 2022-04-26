@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
   resources :favorite_artworks
   resources :favorite_exhibitions
-  resources :gallery_artworks
   resources :exhibited_artworks
   resources :exhibitions
   resources :artworks
