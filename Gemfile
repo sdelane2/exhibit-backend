@@ -25,6 +25,7 @@ gem 'bcrypt', '~> 3.1.7'
 gem "jwt", "~> 2.2"
 gem 'devise_token_auth'
 gem 'devise'
+gem 'dotenv-rails', groups: [:development, :test]
 
 
 # Use Active Storage variant
